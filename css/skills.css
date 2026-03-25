@@ -1,0 +1,284 @@
+/* Секция навыков */
+.skills {
+    background-color: #fff;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.skills-row {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.title-skills {
+    margin-top: 91px;
+    font-family: 'Gilroy-Bold', serif;
+    font-size: 34px;
+    font-weight: 700;
+    line-height: 42px;
+    text-align: center;
+    color: #070707;
+    margin-bottom: 0;
+}
+
+.subtitle-work {
+    margin-top: 69.1px;
+    font-family: 'Gilroy-Medium', serif;
+    font-size: 18px;
+    line-height: 22px;
+    font-weight: 500;
+    text-align: center;
+    color: #070707;
+    margin-bottom: 0;
+}
+
+/* Сетка навыков */
+.programms {
+    margin-top: 84px;
+    padding-bottom: 110px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 40px 30px;
+    max-width: 100%;
+}
+
+/* Карточка навыка */
+.programm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+/* Контейнер иконки — фиксированная высота для всех */
+.skills-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 140px; /* ФИКСИРОВАННАЯ ВЫСОТА для всех иконок */
+    margin-bottom: 24px;
+}
+
+.skills-icon img {
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+}
+
+/* Описание навыка */
+.skills-description {
+    font-family: 'Gilroy-Bold', serif;
+    font-size: 14px;
+    line-height: 1.4;
+    font-weight: 700;
+    text-align: center;
+    color: #828282;
+    max-width: 280px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.skills-description p {
+    margin: 0 0 8px 0;
+}
+
+.skills-description p:last-child {
+    margin-bottom: 0;
+}
+
+/* ========== ИНДИВИДУАЛЬНЫЕ РАЗМЕРЫ ИКОНОК ========== */
+/* Размеры самих картинок внутри фиксированного контейнера */
+
+.programm:nth-child(3) .skills-icon img {
+    max-width: 130px;
+    max-height: 100px;
+}
+
+.programm:nth-child(4) .skills-icon img {
+    max-width: 75px;
+    max-height: 75px;
+}
+
+.programm:nth-child(6) .skills-icon img {
+    max-width: 130px;
+    max-height: 130px;
+}
+
+.programm:nth-child(10) .skills-icon img {
+    max-width: 130px;
+    max-height: 130px;
+}
+
+.programm:nth-child(11) .skills-icon img {
+    max-width: 140px;
+    max-height: 140px;
+}
+
+.programm:nth-child(9) .skills-icon img {
+    max-width: 140px;
+    max-height: 140px;
+}
+
+/* Для остальных иконок стандартный размер */
+.programm:not(:nth-child(3)):not(:nth-child(4)):not(:nth-child(6)):not(:nth-child(10)):not(:nth-child(11)):not(:nth-child(9)) .skills-icon img {
+    max-width: 88px;
+    max-height: 88px;
+}
+
+/* ========== АДАПТИВНОСТЬ ========== */
+
+/* Планшеты и маленькие ноутбуки (до 1024px) */
+@media (max-width: 1024px) {
+    .programms {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 35px 25px;
+    }
+    
+    .skills-description {
+        max-width: 250px;
+    }
+    
+    .skills-icon {
+        height: 120px;
+    }
+}
+
+/* Планшеты вертикально (до 768px) */
+@media (max-width: 768px) {
+    .title-skills {
+        margin-top: 60px;
+        font-size: 28px;
+    }
+    
+    .subtitle-work {
+        margin-top: 40px;
+        font-size: 16px;
+    }
+    
+    .programms {
+        margin-top: 50px;
+        padding-bottom: 70px;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 30px 20px;
+    }
+    
+    .skills-icon {
+        height: 100px;
+        margin-bottom: 20px;
+    }
+    
+    .skills-description {
+        font-size: 12px;
+        max-width: 220px;
+    }
+    
+    /* Адаптивные размеры картинок */
+    .programm:nth-child(3) .skills-icon img {
+        max-width: 100px;
+        max-height: 80px;
+    }
+    
+    .programm:nth-child(4) .skills-icon img {
+        max-width: 60px;
+        max-height: 60px;
+    }
+    
+    .programm:nth-child(6) .skills-icon img {
+        max-width: 100px;
+        max-height: 100px;
+    }
+    
+    .programm:nth-child(10) .skills-icon img {
+        max-width: 100px;
+        max-height: 100px;
+    }
+    
+    .programm:nth-child(11) .skills-icon img {
+        max-width: 110px;
+        max-height: 110px;
+    }
+}
+
+/* Мобильные телефоны (до 480px) */
+@media (max-width: 480px) {
+    .container {
+        padding: 0 15px;
+    }
+    
+    .title-skills {
+        margin-top: 40px;
+        font-size: 24px;
+    }
+    
+    .subtitle-work {
+        margin-top: 30px;
+        font-size: 14px;
+    }
+    
+    .programms {
+        margin-top: 40px;
+        padding-bottom: 50px;
+        grid-template-columns: 1fr;
+        gap: 35px;
+    }
+    
+    .skills-icon {
+        height: 120px;
+    }
+    
+    .skills-description {
+        font-size: 13px;
+        max-width: 280px;
+    }
+    
+    /* Адаптивные размеры картинок */
+    .programm:nth-child(3) .skills-icon img {
+        max-width: 90px;
+        max-height: 70px;
+    }
+    
+    .programm:nth-child(4) .skills-icon img {
+        max-width: 70px;
+        max-height: 70px;
+    }
+    
+    .programm:nth-child(6) .skills-icon img {
+        max-width: 110px;
+        max-height: 110px;
+    }
+    
+    .programm:nth-child(10) .skills-icon img {
+        max-width: 110px;
+        max-height: 110px;
+    }
+    
+    .programm:nth-child(11) .skills-icon img {
+        max-width: 120px;
+        max-height: 120px;
+    }
+}
+
+/* Анимация пульсации при наведении */
+.skills-icon:hover img {
+    animation: pulse 0.4s ease-in-out 1;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.12);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+

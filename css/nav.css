@@ -1,0 +1,206 @@
+/* ========== HEADER ========== */
+.header {
+    background-color: #fff;
+    padding: 32px 0 20px 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.container {
+    max-width: 1200px;
+    padding: 0 20px;
+    margin: 0 auto;
+}
+
+.nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.nav-list {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.nav-link {
+    font-family: 'Gilroy-Bold', serif;
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 22px;
+    text-decoration: none;
+    color: #828282;
+    transition: color 0.3s ease;
+    position: relative;
+    padding-bottom: 8px;
+}
+
+/* Эффект подчеркивания при наведении */
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: #070707;
+    transition: width 0.3s ease;
+}
+
+.nav-link:hover::after {
+    width: 100%;
+}
+
+.nav-link:hover {
+    color: #070707;
+}
+
+/* Активная ссылка */
+.nav-link.active {
+    color: #070707;
+}
+
+.nav-link.active::after {
+    width: 100%;
+    background-color: #070707;
+}
+
+/* Бургер-кнопка (скрыта на десктопе) */
+.nav-button {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    z-index: 1001;
+}
+
+.burger-icon {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background-color: #070707;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.burger-icon::before,
+.burger-icon::after {
+    content: '';
+    position: absolute;
+    width: 24px;
+    height: 2px;
+    background-color: #070707;
+    transition: all 0.3s ease;
+}
+
+.burger-icon::before {
+    top: -8px;
+}
+
+.burger-icon::after {
+    bottom: -8px;
+}
+
+/* Анимация открытого бургера */
+.nav-button.open .burger-icon {
+    background-color: transparent;
+}
+
+.nav-button.open .burger-icon::before {
+    transform: rotate(45deg);
+    top: 0;
+}
+
+.nav-button.open .burger-icon::after {
+    transform: rotate(-45deg);
+    bottom: 0;
+}
+
+/* ========== АДАПТИВНОСТЬ ========== */
+
+/* Планшеты и мобильные (до 768px) */
+@media (max-width: 768px) {
+    .nav-button {
+        display: block;
+    }
+    
+    .nav-list {
+        position: fixed;
+        top: 0;
+        left: -100%;
+        width: 80%;
+        max-width: 300px;
+        height: 100vh;
+        background-color: #fff;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 32px;
+        transition: left 0.4s ease;
+        box-shadow: 2px 0 20px rgba(0, 0, 0, 0.1);
+        z-index: 1000;
+    }
+    
+    .nav-list.open {
+        left: 0;
+    }
+    
+    .nav-link {
+        font-size: 24px;
+    }
+    
+    /* Оверлей */
+    .nav-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease;
+        z-index: 999;
+    }
+    
+    .nav-overlay.open {
+        opacity: 1;
+        visibility: visible;
+    }
+}
+
+/* На больших экранах оверлей не нужен */
+@media (min-width: 769px) {
+    .nav-overlay {
+        display: none;
+    }
+}
+
+/* Мобильные (до 480px) */
+@media (max-width: 480px) {
+    .header {
+        padding: 20px 0 16px 0;
+    }
+    
+    .container {
+        padding: 0 15px;
+    }
+    
+    .nav-list {
+        width: 100%;
+        max-width: none;
+    }
+    
+    .nav-link {
+        font-size: 20px;
+    }
+}

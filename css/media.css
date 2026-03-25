@@ -1,0 +1,231 @@
+/* Section Header */
+
+@media (max-width: 550px) {
+    .nav-list, .line {
+        display: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    .nav-button {
+        display: block;
+        padding: 0;
+        margin:  40px 15px 0 0;
+        z-index: 9;
+        float: right;
+        top: 10px;
+        right: 20px; 
+        position: sticky;
+        position: absolute;
+        transform:translate(0,45px)
+    }
+
+    .nav.open .nav-list {
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background-color: #fff;
+        z-index: 1;
+        display: flex;
+        flex-direction: column;
+        row-gap: 67px;
+        padding: 66px 26px;
+        font-family: 'Gilroy-Bold', serif;
+        font-size: 34px;
+        line-height: 42px;
+        font-weight: 700;
+        justify-content:unset;
+    }
+
+    .nav.open .nav-button {
+        position: fixed;
+        transform: translate(0,20px);
+    }
+
+    .header {
+        padding: 0;
+    }
+}
+
+/* Section Home */
+
+.mobile {
+    display: none;
+}
+
+@media (max-width: 550px) {
+    .photo {
+        display: none;
+    }
+
+    .mobile {
+        display: block;
+        object-fit: cover;
+        width: 100%;
+    }
+
+    .first-subtitle {
+        color: #090909;
+        font-family: 'Gilroy-Medium', serif;
+        font-weight: 500;
+    }
+
+    .second-subtitle {
+        display: none;
+    }
+
+    .home-row {
+        flex-direction: column;
+    }
+
+    .title {
+        margin-top: 65px;
+    }
+
+    .first-subtitle {
+        margin: 23px 0 0 0;
+    }
+}
+
+/* Section About me */
+
+@media (max-width: 375px) {
+    .aboutme-row {
+        display: none;
+    }
+
+    .aboutme-row-media {
+        display: block;
+    }
+
+    .aboutme-row-media p {
+        max-width: 316px;
+    }
+
+    .first-myselfsubtitle {
+        display: block;
+        margin-top: 29.94px;
+        font-weight: 500;
+        font-family: 'Gilroy-Medium', serif;
+        font-size: 18px;
+        line-height: 22px;
+        color: #070707;
+        text-align: center;
+    }
+
+    .second-myselfsubtitle {
+        display: block;
+        margin-top: 33px;
+        font-weight: 500;
+        font-family: 'Gilroy-Medium', serif;
+        font-size: 18px;
+        line-height: 22px;
+        color: #070707;
+        text-align: center;
+    }
+
+    .third-myselfsubtitle {
+        display: block;
+        margin-top: 33px;
+        font-weight: 500;
+        font-family: 'Gilroy-Medium', serif;
+        font-size: 18px;
+        line-height: 22px;
+        color: #070707;
+        text-align: center;
+    }
+}
+
+@media (max-width: 550px) {
+    .aboutme {
+        margin-top: 83px;
+        padding: 81px 0 76px 0;
+    }
+}
+
+/* Section Skills */
+
+@media (max-width: 423px) {
+    .programm:nth-child(3), .programm:nth-child(4) {
+        margin-top: 20px;
+    }
+}
+
+@media (max-width: 380px) {
+    .programms {
+        margin-top: 70.96px;
+        padding-bottom: 98px;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .programm:not(:first-child) {
+        margin-top: 81px;
+    }
+
+    .title-skills {
+        margin-top: 83px;
+    }
+
+    .subtitle-work {
+        margin-top: 50px;
+    }
+
+    .skills-subtitle {
+        margin: 24.21px 0 40.41px 0;
+    }
+
+    .skills-subtitle p {
+        margin: 0;
+    }
+}
+
+/* Section Portfolio */
+
+@media (max-width: 380px) {
+    .portfolio {
+        padding-top: 81px;
+        padding-bottom: 81px;
+    }
+
+    .title-portfolio h2 {
+        margin-bottom: 64px;
+    }
+
+    .project-title {
+        margin: 33px 0 0 0;
+    }
+
+    .project + .project {
+        margin-top: 77.97px;
+    }
+}
+
+/* Footer */
+
+@media (max-width: 380px) {
+    .footer {
+        margin-top: 82px;
+    }
+
+    .title-contacts p {
+        margin: 27px 0 0 0;
+    }
+
+    .btn {
+        margin-top: 39px;
+    }
+
+    .icons {
+        margin-top: 48px;
+        column-gap: 51px;
+    }
+
+    .icons-words p {
+        margin-top: 49px;
+    }
+}
+
+

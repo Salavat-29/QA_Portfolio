@@ -1,75 +1,73 @@
-const nav = document.querySelector('#nav');
-const navBtn = document.querySelector('#nav-btn');
-const navBtnImg = document.querySelector('#nav-btn-img');
-
-navBtn.onclick = () => {
-    if (nav.classList.toggle('open')) {
-            navBtnImg.src= "./image/mobile/nav_close.svg";
-    } else { 
-        navBtnImg.src = "./image/mobile/nav_open.svg";
-    }
-}
-
+// Инициализация AOS
 AOS.init({
-    // disable: mobile
-    // once: true
+    duration: 800,
+    once: true,
+    offset: 100,
+    easing: 'ease-out'
 });
 
-
-
-
-
-// Функция копирования текста
-function copyToClipboard(text, element) {
-    navigator.clipboard.writeText(text).then(() => {
-        // Показываем уведомление
-        showNotification(`Скопировано: ${text}`);
-        
-        // Визуальный фидбек на элементе
-        const originalText = element.innerHTML;
-        element.innerHTML = '✓ Скопировано!';
-        setTimeout(() => {
-            element.innerHTML = originalText;
-        }, 1500);
-    }).catch(err => {
-        console.error('Ошибка копирования: ', err);
-        showNotification('Не удалось скопировать', 'error');
-    });
-}
-
-// Показ уведомления
-function showNotification(message, type = 'success') {
-    // Удаляем существующее уведомление, если есть
-    const existingNotification = document.querySelector('.copy-notification');
-    if (existingNotification) {
-        existingNotification.remove();
+// ========== БУРГЕР-МЕНЮ ==========
+document.addEventListener('DOMContentLoaded', function() {
+    const navBtn = document.getElementById('nav-btn');
+    const navList = document.querySelector('.nav-list');
+    
+    if (!navBtn || !navList) return;
+    
+    // Создаем оверлей
+    let overlay = document.querySelector('.nav-overlay');
+    if (!overlay) {
+        overlay = document.createElement('div');
+        overlay.classList.add('nav-overlay');
+        document.body.appendChild(overlay);
     }
     
-    const notification = document.createElement('div');
-    notification.className = 'copy-notification';
-    notification.textContent = message;
-    document.body.appendChild(notification);
+    // Функция закрытия меню
+    function closeMenu() {
+        navBtn.classList.remove('open');
+        navList.classList.remove('open');
+        if (overlay) overlay.classList.remove('open');
+        document.body.style.overflow = '';
+        // Возвращаем меню в исходное положение
+        navList.style.left = '';
+        navList.style.display = '';
+    }
     
-    // Автоматическое удаление через 2 секунды
-    setTimeout(() => {
-        notification.remove();
-    }, 2000);
-}
-
-// Добавляем обработчики на все элементы с классом copyable
-document.querySelectorAll('.copyable').forEach(element => {
-    element.addEventListener('click', (e) => {
-        e.stopPropagation();
-        const textToCopy = element.getAttribute('data-copy') || element.textContent.trim();
-        copyToClipboard(textToCopy, element);
+    // Функция открытия меню
+    function openMenu() {
+        navBtn.classList.add('open');
+        navList.classList.add('open');
+        if (overlay) overlay.classList.add('open');
+        document.body.style.overflow = 'hidden';
+        // Принудительно показываем меню
+        navList.style.left = '0';
+        navList.style.display = 'flex';
+    }
+    
+    // Функция переключения
+    function toggleMenu() {
+        if (navList.classList.contains('open')) {
+            closeMenu();
+        } else {
+            openMenu();
+        }
+    }
+    
+    // Событие на кнопку бургера
+    navBtn.addEventListener('click', toggleMenu);
+    
+    // Закрытие при клике на оверлей
+    if (overlay) {
+        overlay.addEventListener('click', closeMenu);
+    }
+    
+    // Закрытие при изменении размера окна
+    window.addEventListener('resize', function() {
+        if (window.innerWidth > 768 && navList.classList.contains('open')) {
+            closeMenu();
+        }
     });
-});
-
-
-
-
-// ========== ПЛАВНЫЙ СКРОЛЛ К ЯКОРЯМ ==========
-document.addEventListener('DOMContentLoaded', function() {
+    
+    // ========== ПЛАВНЫЙ СКРОЛЛ ==========
     const navLinks = document.querySelectorAll('.nav-link');
     const header = document.querySelector('.header');
     
@@ -91,18 +89,40 @@ document.addEventListener('DOMContentLoaded', function() {
                     });
                 }
                 
-                // Закрываем мобильное меню
-                const navList = document.querySelector('.nav-list');
-                const navBtn = document.getElementById('nav-btn');
-                const overlay = document.querySelector('.nav-overlay');
-                
-                if (navList && navList.classList.contains('open')) {
-                    navList.classList.remove('open');
-                    if (navBtn) navBtn.classList.remove('open');
-                    if (overlay) overlay.classList.remove('open');
-                    document.body.style.overflow = '';
-                }
+                closeMenu();
             });
         });
     }
+    
+    // ========== КОПИРОВАНИЕ КОНТАКТОВ ==========
+    function showNotification(message) {
+        const existingNotification = document.querySelector('.copy-notification');
+        if (existingNotification) existingNotification.remove();
+        
+        const notification = document.createElement('div');
+        notification.className = 'copy-notification';
+        notification.textContent = message;
+        document.body.appendChild(notification);
+        
+        setTimeout(() => notification.remove(), 2000);
+    }
+    
+    document.querySelectorAll('.copyable').forEach(element => {
+        element.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const textToCopy = element.getAttribute('data-copy') || element.textContent.trim();
+            
+            navigator.clipboard.writeText(textToCopy).then(() => {
+                showNotification(`Скопировано: ${textToCopy}`);
+                
+                const originalText = element.innerHTML;
+                element.innerHTML = '✓ Скопировано!';
+                setTimeout(() => {
+                    element.innerHTML = originalText;
+                }, 1500);
+            }).catch(() => {
+                showNotification('Не удалось скопировать');
+            });
+        });
+    });
 });

@@ -100,6 +100,7 @@
     height: 2px;
     background-color: #070707;
     transition: all 0.3s ease;
+    left: 0;
 }
 
 .burger-icon::before {
@@ -110,7 +111,7 @@
     bottom: -8px;
 }
 
-/* Анимация открытого бургера */
+/* Анимация открытого бургера (превращение в крестик) */
 .nav-button.open .burger-icon {
     background-color: transparent;
 }
@@ -127,7 +128,7 @@
 
 /* ========== АДАПТИВНОСТЬ ========== */
 
-/* Планшеты и мобильные (до 768px) */
+/* Все мобильные устройства (до 768px) */
 @media (max-width: 768px) {
     .nav-button {
         display: block;
@@ -178,14 +179,7 @@
     }
 }
 
-/* На больших экранах оверлей не нужен */
-@media (min-width: 769px) {
-    .nav-overlay {
-        display: none;
-    }
-}
-
-/* Мобильные (до 480px) */
+/* Очень маленькие телефоны (до 480px) — только уменьшаем шрифт и отступы */
 @media (max-width: 480px) {
     .header {
         padding: 20px 0 16px 0;
@@ -195,12 +189,22 @@
         padding: 0 15px;
     }
     
-    .nav-list {
-        width: 100%;
-        max-width: none;
-    }
-    
     .nav-link {
         font-size: 20px;
+    }
+}
+
+/* На больших экранах оверлей не нужен */
+@media (min-width: 769px) {
+    .nav-overlay {
+        display: none;
+    }
+}
+
+/* ФИКС ДЛЯ 550PX — гарантированное отображение меню */
+@media (max-width: 768px) {
+    .nav-list.open {
+        left: 0 !important;
+        display: flex !important;
     }
 }
